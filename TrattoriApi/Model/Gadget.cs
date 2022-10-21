@@ -6,8 +6,8 @@
 
         public string Description { get; set; }
 
-        public int TrattoreId { get; set; }
+       
 
-        
+        public Trattore trattore { get; set; }
     }
 }

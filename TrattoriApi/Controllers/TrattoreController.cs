@@ -20,8 +20,7 @@ namespace TrattoriApi.Controllers
         {
            try
             {
-                _serviceTrattore.Insert(trattore);
-                return Created($"{nameof(GetDetail)}", trattore);
+                return Created($"{nameof(GetDetail)}", _serviceTrattore.Insert(trattore));
             }
             catch(ArgumentException e)
             {
@@ -62,7 +61,18 @@ namespace TrattoriApi.Controllers
            _serviceTrattore.Delete(id);
             return Ok();
         }
+        [HttpGet("searchbygadget/{gadgetid}")]
+        public IActionResult SearchBy(int gadgetid)
+        {
+            return  Ok(_serviceTrattore.SearchByGadget(gadgetid));
+        }
 
+        [HttpGet("orderbygadgets/")]
+        public IActionResult OrderBy()
+        {
+            return Ok(_serviceTrattore.OrderByNumberOfGadgets());
+
+        }
 
 
     }

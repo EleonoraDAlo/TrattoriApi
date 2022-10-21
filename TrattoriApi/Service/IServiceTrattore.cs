@@ -14,5 +14,9 @@ namespace TrattoriApi.Service
         public void Delete(int id);
 
         public IList<Trattore> GetAllByFilter(string value);
+
+        public Trattore SearchByGadget(int gadgetid);
+
+        public List<Trattore> OrderByNumberOfGadgets();
     }
 }

@@ -6,11 +6,13 @@ namespace TrattoriApi.Service
     {
         //private IDal _dalTrattore;
         private IList<Trattore> _trattoreList;
+        private IList<Gadget> _gadgetList;
 
-        public ServiceTrattore(IList<Trattore> trattoreList)
+        public ServiceTrattore(IList<Trattore> trattoreList, IList<Gadget> gadgetList)
         {
          
             _trattoreList = trattoreList;
+            _gadgetList = gadgetList;
         }
 
 
@@ -85,5 +87,28 @@ namespace TrattoriApi.Service
 
             return _trattoreList.Max(trattore => trattore.Id) + 1;
         }
+
+        public Trattore SearchByGadget(int gadgetid)
+        {
+            foreach(var trattore in _trattoreList)
+                foreach(var gadget in trattore.gadgets)
+                    if (gadgetid == gadget.Id)
+                        return trattore;
+            return null;
+                    
+        }
+
+        public List<Trattore> OrderByNumberOfGadgets()
+        {
+            throw new NotImplementedException();
+        }
+
+        //public List<Trattore> OrderByNumberOfGadgets()
+        //{
+        //    List <Trattore> listafiltrata =_trattoreList.OrderBy(trattore => trattore.gadgets).ToList();
+        //    return listafiltrata;
+
+
+        //}
     }
 }
